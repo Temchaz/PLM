@@ -18,9 +18,9 @@ int main()
 	setlocale(LC_ALL, "Rus");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	TRAIN arr[8];
+	TRAIN* arr=new TRAIN [8];
 	for (int i = 0; i < 8; i++) {
-		cout <<"введите даные о маршруте: " << endl;
+		cout << "введите даные о маршруте: " << endl;
 		cout << "\tвведите пункт назначения: ";
 		cin.getline(arr[i].punct, 20);
 		cout << "\tвведите номер поезда: ";
@@ -43,12 +43,12 @@ int main()
 
 	cout << endl;
 	for (int i = 0; i < 8; i++) {
-		cout <<"\tномер поезда: "<< arr[i].num;
+		cout << "\tномер поезда: " << arr[i].num;
 		cout << "\tпункт назначения: " << arr[i].punct << endl;
 		cout << "\tвремя отправления: " << arr[i].hr << ":" << arr[i].hr << endl;
 		cout << endl;
 	}
-	
+
 	cout << "введите номер поезда: ";
 	int k;
 	cin >> k;
