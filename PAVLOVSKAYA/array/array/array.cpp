@@ -26,7 +26,7 @@ int main()
 	double sum = 0;
 	bool state=0;
 	for (int i = 0; i < n; i++) {
-		if (arr[i] > 0)
+		if (arr[i] > 0 && state == 0)
 			state = 1;
 		else if (state == 1 && arr[i] <= 0)
 			sum += arr[i];
