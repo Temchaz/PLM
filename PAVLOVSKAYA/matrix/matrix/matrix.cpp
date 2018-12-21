@@ -22,19 +22,19 @@ int main()
 		{-91.1,92.2,-93.3,94.4,-95.5,96.6,-97.7,98.8,-99.9,100},
 	};
 	double smooth_matrix[10][10];
-	smooth_matrix[0][0] = (matrix[0][0] + matrix[0][1] + matrix[1][0] + matrix[1][1]) / 4;
-	smooth_matrix[0][9] = (matrix[0][9] + matrix[0][8] + matrix[1][9] + matrix[1][8]) / 4;
-	smooth_matrix[9][0] = (matrix[9][0] + matrix[8][0] + matrix[9][1] + matrix[8][1]) / 4;
-	smooth_matrix[9][9] = (matrix[9][9] + matrix[9][8] + matrix[8][9] + matrix[8][8]) / 4;
+	smooth_matrix[0][0] = (matrix[0][1] + matrix[1][0] + matrix[1][1]) / 3;
+	smooth_matrix[0][9] = (matrix[0][8] + matrix[1][9] + matrix[1][8]) / 3;
+	smooth_matrix[9][0] = (matrix[8][0] + matrix[9][1] + matrix[8][1]) / 3;
+	smooth_matrix[9][9] = (matrix[9][8] + matrix[8][9] + matrix[8][8]) / 3;
 	for (int i = 1; i < 9; i++) {
-		smooth_matrix[0][i] = (matrix[0][i] + matrix[0][i - 1] + matrix[0][i + 1] + matrix[1][i] + matrix[1][i - 1] + matrix[1][i + 1]) / 6;
-		smooth_matrix[9][i] = (matrix[9][i] + matrix[9][i - 1] + matrix[9][i + 1] + matrix[8][i] + matrix[8][i - 1] + matrix[8][i + 1]) / 6;
-		smooth_matrix[i][0] = (matrix[i][0] + matrix[i - 1][0] + matrix[i + 1][0] + matrix[i][1] + matrix[i - 1][1] + matrix[i + 1][1]) / 6;
-		smooth_matrix[i][9] = (matrix[i][9] + matrix[i - 1][9] + matrix[i + 1][9] + matrix[i][9] + matrix[i - 1][8] + matrix[i + 1][8]) / 6;
+		smooth_matrix[0][i] = (matrix[0][i - 1] + matrix[0][i + 1] + matrix[1][i] + matrix[1][i - 1] + matrix[1][i + 1]) / 5;
+		smooth_matrix[9][i] = (matrix[9][i - 1] + matrix[9][i + 1] + matrix[8][i] + matrix[8][i - 1] + matrix[8][i + 1]) / 5;
+		smooth_matrix[i][0] = (matrix[i - 1][0] + matrix[i + 1][0] + matrix[i][1] + matrix[i - 1][1] + matrix[i + 1][1]) / 5;
+		smooth_matrix[i][9] = (matrix[i - 1][9] + matrix[i + 1][9] + matrix[i][9] + matrix[i - 1][8] + matrix[i + 1][8]) / 5;
 	}
 	for (int i = 1; i < 9; i++)
 		for (int j = 1; j < 9; j++)
-			smooth_matrix[i][j] = (matrix[i][j] + matrix[i][j-1] + matrix[i][j+1] + matrix[i-1][j] + matrix[i-1][j-1] + matrix[i-1][j+1] + matrix[i+1][j] + matrix[i+1][j-1] + matrix[i+1][j+1]) / 9;
+			smooth_matrix[i][j] = (matrix[i][j-1] + matrix[i][j+1] + matrix[i-1][j] + matrix[i-1][j-1] + matrix[i-1][j+1] + matrix[i+1][j] + matrix[i+1][j-1] + matrix[i+1][j+1]) / 8;
 	
 	cout << fixed << setprecision(2);
 	for (int i = 0; i < 10; i++) {
