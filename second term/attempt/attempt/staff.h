@@ -10,12 +10,12 @@ public:
 	Unit();	// конструктор по умолчнию
 	Unit(const char* pname, int health, int stamina); // конструктор с параметрами по умолчанию
 	Unit(const Unit &other); // конструктор копирования
-
-	int Id();
-
-	int Health();
-	int Stamina();
-	int Damage();
+	
+	const char* Name() { return m_pname; };
+	int Id() { return m_id;};
+	int Health() { return nature.m_health;};
+	int Stamina() { return nature.m_stamina;};
+	int Damage() { return nature.m_damage; };
 	
 	friend class Artifact;
 	friend class Elixir;
@@ -50,11 +50,11 @@ public:
 class Elixir : public Artifact, public onFieldObject
 {
 public:
-	Elixir(int val = 30) {
-		if (val > 100) val = 100;
-		else if (val < 0) val = 0;
+	Elixir(int val = 30): m_value(val) {
+		if (val > 100) m_value = 100;
+		else if (val < 0) m_value = 0;
 	};
-
+	int Value() { return m_value; };
 	virtual void apply(Unit &unt) {
 		int sum_val = unt.nature.m_health + m_value;
 		if (sum_val < 100) {
@@ -72,12 +72,13 @@ private:
 
 class Toxin : public Artifact, public onFieldObject
 {
-public:
-	Toxin(int val = 50) {
-		if (val > 100) val = 100;
-		else if (val < 0) val = 0;
+public: 
+	Toxin(int val = 50) : m_value(val) {
+		if (val > 100) m_value = 100;
+		else if (val < 0) m_value = 0;
 	};
 
+	int Value() { return m_value; };
 	virtual void apply(Unit &unt) {
 		int dif_val = unt.nature.m_health - m_value;
 		if (dif_val <= 0) {

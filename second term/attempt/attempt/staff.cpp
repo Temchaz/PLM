@@ -9,7 +9,8 @@ Unit::Unit() : m_pname("noname") {
 	nature.m_stamina = 0;
 	m_id = ++s_id;
 }
-Unit::Unit(const char* pname, int health = 0, int stamina = 0) : m_pname("noname") {
+Unit::Unit(const char* pname, int health = 0, int stamina = 0) {
+	m_pname = pname;
 	nature.setHealth(health);
 	nature.m_stamina = stamina;
 	m_id = ++s_id;
@@ -19,21 +20,6 @@ Unit::Unit(const Unit &other) {
 	this->nature.m_health = other.nature.m_health;
 	this->nature.m_stamina = other.nature.m_stamina;
 	m_id = ++s_id;
-}
-
-int Unit::Id() {
-	return m_id;
-}
-
-
-int Unit::Health() {
-	return nature.m_health;
-}
-int Unit::Stamina() {
-	return nature.m_stamina;
-}
-int Unit::Damage() {
-	return nature.m_damage;
 }
 
 void Unit::Nature::setHealth(int health) {

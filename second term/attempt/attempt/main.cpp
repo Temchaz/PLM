@@ -36,14 +36,26 @@ int main()
 	Team redTeam("gnomes" , &unitOne);
 	Team blueTeam("UglyBoys", &unitTwo);
 
-	Elixir elixirBig;
+	Elixir elixirBig(70);
 	elixirBig.putOnField(&field, { 100, 500 });
-	Elixir elixirSmall;
+	Elixir elixirSmall(10);
 	elixirBig.putOnField(&field, { 500, 100 });
-	Toxin toxinBig;
+	Toxin toxinBig(25);
 	toxinBig.putOnField(&field, { 1000, 500 });
-	Toxin toxinSmall;
+	Toxin toxinSmall(5);
 	toxinSmall.putOnField(&field, { 500, 1000 });
+	// тест метода apply для токсина
+	cout << unitOne.Name() << " health: " << unitOne.Health() << endl;
+	cout << "объем яда "<<toxinBig.Value() << endl;
+	toxinBig.apply(unitOne);
+	cout << unitOne.Name() << " health: " << unitOne.Health() << endl;
+	cout << "осталось яда " << toxinBig.Value() << endl;
+	// тест метода apply для эликсира
+	cout << unitOne.Name() << " health: " << unitOne.Health() << endl;
+	cout << "объем лекарства " << elixirBig.Value() << endl;
+	elixirBig.apply(unitOne);
+	cout << unitOne.Name() << " health: " << unitOne.Health() << endl;
+	cout << "осталось лекарства " << elixirBig.Value() << endl;
 
 }
 
